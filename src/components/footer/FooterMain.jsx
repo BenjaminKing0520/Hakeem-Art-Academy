@@ -30,7 +30,7 @@ export default function FooterMain() {
     border: "border-white/50",
     glow: "from-white/20 via-white/10 to-white/20",
     text: "text-white",
-    icon: "text-white hover:text-[#0C6610]", // Facebook hover blue
+    icon: "text-white hover:text-[#073C0A]", // Facebook hover blue
   };
 
   return (

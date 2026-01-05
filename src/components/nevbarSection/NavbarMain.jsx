@@ -37,7 +37,7 @@ const NavbarMain = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4, ease: "easeOut" }} // ⚡ fast load animation
         style={{
-          backgroundColor: scrolled ? "#0B3B14E6" : "#0B3B14B3",
+          backgroundColor: scrolled ? "#073C0A" : "#073C0A",
         }}
         className={`fixed w-full top-0 left-0 z-50 backdrop-blur-md transition-all duration-500 ${
           scrolled ? "shadow-lg py-1.5" : "py-2.5"

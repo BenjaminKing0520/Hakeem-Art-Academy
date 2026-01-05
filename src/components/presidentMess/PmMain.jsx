@@ -32,7 +32,7 @@ const PmMain = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.6 }}
-            className="text-2xl md:text-3xl font-bold text-[#0B3B14] mb-3"
+            className="text-2xl md:text-3xl font-bold text-[[#073C0A]] mb-3"
           >
             Our Journey
           </motion.h2>
@@ -42,7 +42,7 @@ const PmMain = () => {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.6 }}
-            className="w-24 h-1 bg-[#0B3B14] mb-6 rounded-full"
+            className="w-24 h-1 bg-[[#073C0A]] mb-6 rounded-full"
           ></motion.div>
 
           <motion.p
@@ -72,7 +72,7 @@ const PmMain = () => {
           >
             <Link
               to="/#"
-              className="inline-block bg-[#0B3B14] text-white px-6 py-3 rounded-full font-medium tracking-wide shadow-md hover:bg-[#0a3412] transition-all duration-300"
+              className="inline-block bg-[[#073C0A]] text-white px-6 py-3 rounded-full font-medium tracking-wide shadow-md hover:bg-[#0a3412] transition-all duration-300"
             >
               Read More About Us →
             </Link>

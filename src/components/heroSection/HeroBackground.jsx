@@ -31,16 +31,15 @@ const HeroBackground = () => {
           src={images[index]}
           alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover"
-          initial={{ x: direction > 0 ? '100%' : '-100%', opacity: 0 }}
+          initial={{ x: direction > 0 ? "100%" : "-100%", opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
-          exit={{ x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
-          transition={{ duration: 1.1, ease: 'easeInOut' }}
+          exit={{ x: direction > 0 ? "-100%" : "100%", opacity: 0 }}
+          transition={{ duration: 1.1, ease: "easeInOut" }}
         />
       </AnimatePresence>
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
-
 
       {/* Dots (Indicators) */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
@@ -49,7 +48,7 @@ const HeroBackground = () => {
             key={i}
             onClick={() => setIndex(i)}
             className={`w-3 h-3 rounded-full ${
-              index === i ? 'bg-white' : 'bg-green-800'
+              index === i ? "bg-white" : "bg-[#073C0A]"
             } transition-all`}
           ></button>
         ))}
