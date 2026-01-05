@@ -71,7 +71,7 @@ const PmMain = () => {
             viewport={{ once: true, amount: 0.6 }}
           >
             <Link
-              to="/about"
+              to="/#"
               className="inline-block bg-[#0B3B14] text-white px-6 py-3 rounded-full font-medium tracking-wide shadow-md hover:bg-[#0a3412] transition-all duration-300"
             >
               Read More About Us →
