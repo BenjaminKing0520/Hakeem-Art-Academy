@@ -5,10 +5,11 @@ import "./index.css";
 
 // Pages
 import Home from "./pages/Home";
-import Course from "./pages/Course";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
+import Course from "./pages/Course";
 import Events from "./pages/Events";
+import Contact from "./pages/Contact";
+
 
 // Loading Screen Component
 function LoadingScreen() {
@@ -37,11 +38,11 @@ function App() {
 
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
-    { path: "/home", element: <Home /> },//
-    { path: "/course", element: <Course /> },//
-    { path: "/about", element: <About /> },//
-    { path: "/events", element: <Events /> },//
-    { path: "/contact", element: <Contact /> },//
+    { path: "/home", element: <Home /> }, //
+    { path: "/about", element: <About /> }, //
+    { path: "/course", element: <Course /> }, //
+    { path: "/events", element: <Events /> }, //
+    { path: "/contact", element: <Contact /> }, //
   ]);
 
   return <RouterProvider router={router} />;
