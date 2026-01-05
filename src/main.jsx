@@ -37,11 +37,11 @@ function App() {
 
   const router = createBrowserRouter([
     { path: "/", element: <Home /> },
-    { path: "/home", element: <Home /> },
-    { path: "/course", element: <Course /> },
-    { path: "/about", element: <About /> },
-    { path: "/events", element: <Events /> },
-    { path: "/contact", element: <Contact /> },
+    { path: "/home", element: <Home /> },//
+    { path: "/course", element: <Course /> },//
+    { path: "/about", element: <About /> },//
+    { path: "/events", element: <Events /> },//
+    { path: "/contact", element: <Contact /> },//
   ]);
 
   return <RouterProvider router={router} />;

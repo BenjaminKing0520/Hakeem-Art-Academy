@@ -8,10 +8,10 @@ import LogoImage from "../../assets/Images/Logo.jpg";
 // Navbar Links
 const links = [
   { name: "Home", path: "/" },
-  { name: "Courses", path: "/course" },
-  { name: "About Us", path: "/about" },
-  { name: "Events", path: "/events" },
-  { name: "Contact", path: "/contact" },
+  { name: "Courses", path: "/" }, //course
+  { name: "About Us", path: "/" }, //about
+  { name: "Events", path: "/" }, //events
+  { name: "Contact", path: "/" }, //contact
 ];
 
 const NavbarMain = () => {
