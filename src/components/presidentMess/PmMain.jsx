@@ -33,7 +33,7 @@ const PmMain = () => {
             viewport={{ once: false, amount: 0.6 }}
             className="text-2xl md:text-3xl font-semibold text-gray-900 mb-4"
           >
-            Our Story
+            Our Journey
           </motion.h2>
 
           <motion.div
