@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import { Link as RouterLink } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import LogoImage from "../../assets/Images/Logo.jpg";
+import LogoImage from "../../assets/Images/silbe.png";
 
 // Navbar Links
 const links = [
