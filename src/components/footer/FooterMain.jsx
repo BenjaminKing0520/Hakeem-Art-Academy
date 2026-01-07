@@ -37,7 +37,7 @@ export default function FooterMain() {
   const socialLinks = [
     {
       icon: FaFacebook,
-      link: "https://www.facebook.com/",
+      link: "https://www.facebook.com/profile.php?id=61585860912759&mibextid=wwXIfr&mibextid=wwXIfr",
     },
     {
       icon: FaLinkedin,
