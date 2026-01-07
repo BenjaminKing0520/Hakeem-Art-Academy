@@ -1,9 +1,8 @@
 import {
   FaFacebook,
-  FaInstagram,
   FaWhatsapp,
+  FaEnvelope,
   FaPhoneAlt,
-  FaLinkedin,
   FaArrowUp,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -34,28 +33,24 @@ export default function FooterMain() {
   };
 
   // 🔗 Social media links (CHANGE YOUR LINKS HERE)
-  const socialLinks = [
-    {
-      icon: FaFacebook,
-      link: "https://www.facebook.com/profile.php?id=61585860912759&mibextid=wwXIfr&mibextid=wwXIfr",
-    },
-    {
-      icon: FaLinkedin,
-      link: "https://www.linkedin.com/",
-    },
-    {
-      icon: FaInstagram,
-      link: "https://www.instagram.com/",
-    },
-    {
-      icon: FaWhatsapp,
-      link: "https://wa.me/94770000000", // country code + number
-    },
-    {
-      icon: FaPhoneAlt,
-      link: "tel:+94770000000",
-    },
-  ];
+const socialLinks = [
+  {
+    icon: FaFacebook,
+    link: "https://www.facebook.com/profile.php?id=61585860912759",
+  },
+  {
+    icon: FaWhatsapp,
+    link: "https://wa.me/94752258847",
+  },
+  {
+    icon: FaEnvelope,
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=mailhakeemahmed94@gmail.com",
+  },
+  {
+    icon: FaPhoneAlt,
+    link: "tel:+94752258847",
+  },
+];
 
   return (
     <footer className="relative overflow-hidden bg-[#073C0A]">
