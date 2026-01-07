@@ -22,17 +22,6 @@ export default function SubhMain() {
   return (
     <section className="py-16 bg-[#073C0A] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
-        {/* Title */}
-        <motion.h2
-          variants={fadeIn("up")}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
-        >
-          Awarding Bodies
-        </motion.h2>
-
         {/* Carousel */}
         <motion.div className="cursor-grab overflow-hidden">
           <motion.div
