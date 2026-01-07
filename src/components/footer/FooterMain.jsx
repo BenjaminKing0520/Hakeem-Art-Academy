@@ -30,15 +30,39 @@ export default function FooterMain() {
     border: "border-white/50",
     glow: "from-white/20 via-white/10 to-white/20",
     text: "text-white",
-    icon: "text-white hover:text-[#0C6610]", // Facebook hover blue
+    icon: "text-white hover:text-[#0C6610]",
   };
+
+  // 🔗 Social media links (CHANGE YOUR LINKS HERE)
+  const socialLinks = [
+    {
+      icon: FaFacebook,
+      link: "https://www.facebook.com/",
+    },
+    {
+      icon: FaLinkedin,
+      link: "https://www.linkedin.com/",
+    },
+    {
+      icon: FaInstagram,
+      link: "https://www.instagram.com/",
+    },
+    {
+      icon: FaWhatsapp,
+      link: "https://wa.me/94770000000", // country code + number
+    },
+    {
+      icon: FaPhoneAlt,
+      link: "tel:+94770000000",
+    },
+  ];
 
   return (
     <footer className="relative overflow-hidden bg-[#073C0A]">
       {/* Glow Background */}
       <div
         className={`absolute inset-0 opacity-20 blur-3xl animate-gradient-x bg-gradient-to-r ${fbTheme.glow} -z-10`}
-      ></div>
+      />
 
       <motion.div
         className={`relative border rounded-3xl shadow-2xl p-6 md:p-10 border-opacity-50 ${fbTheme.border}`}
@@ -46,14 +70,13 @@ export default function FooterMain() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Social Icons */}
           <div className="flex gap-5 md:w-1/3 justify-center md:justify-start">
-            {[FaFacebook, FaLinkedin, FaInstagram, FaWhatsapp, FaPhoneAlt].map(
-              (Icon, i) => (
+            {socialLinks.map(({ icon: Icon, link }, i) => (
+              <a key={i} href={link} target="_blank" rel="noopener noreferrer">
                 <Icon
-                  key={i}
                   className={`text-2xl hover:scale-125 hover:-translate-y-1 transition-all duration-300 ${fbTheme.icon}`}
                 />
-              )
-            )}
+              </a>
+            ))}
           </div>
 
           {/* Center Text */}
@@ -69,12 +92,12 @@ export default function FooterMain() {
             </p>
           </div>
 
-          {/* Developer Image */}
+          {/* Logo / Image */}
           <div className="md:w-1/3 flex justify-end">
             <motion.img
               whileHover={{ scale: 1.15, rotate: 3 }}
               src={devImg}
-              alt="Developer"
+              alt="Logo"
               className={`w-24 h-24 md:w-32 md:h-32 rounded-full border-4 shadow-xl transition-shadow ${fbTheme.border}`}
             />
           </div>
@@ -83,7 +106,7 @@ export default function FooterMain() {
         {/* Back-to-top Button */}
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className={`fixed bottom-6 right-6 p-2 rounded-full shadow-2xl z-50 hover:scale-110 transition-all duration-300 text-white bg-white/20`}
+          className="fixed bottom-6 right-6 p-2 rounded-full shadow-2xl z-50 hover:scale-110 transition-all duration-300 bg-white/20"
         >
           <FaArrowUp className="text-white" />
         </motion.button>
