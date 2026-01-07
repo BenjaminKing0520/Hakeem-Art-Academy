@@ -18,7 +18,7 @@ const HeroText = () => {
         "
       >
         Welcome to <br />
-        Hakeem Art Online
+        Hakeem Art Academy
       </motion.h1>
 
       <motion.p
