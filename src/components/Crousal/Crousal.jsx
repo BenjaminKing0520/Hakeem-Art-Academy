@@ -1,38 +1,21 @@
-import {
-  BookOpen,
-  PenTool,
-  GraduationCap,
-  Palette,
-  ScrollText,
-  User,
-} from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/framerMotion/variants";
 
+// 🖼 Images
+import SLIBE from "@/assets/programs/SLIBE-01.jpg";
+import EROC from "@/assets/programs/eroc-01.jpg";
+import IAF from "@/assets/programs/IAF-01-01.jpg";
+import ISO from "@/assets/programs/ISO-01-01.jpg";
+import MMGI from "@/assets/programs/MMGI-01.jpg";
+import UBE from "@/assets/programs/UBE-01.jpg";
+
 const programs = [
-  {
-    icon: PenTool,
-    title: "Arabic Calligraphy",
-    desc: "For Children, Male & Female Adults",
-  },
-  { icon: BookOpen, title: "Quran & Thajweeth", desc: "For Adult Women" },
-  { icon: BookOpen, title: "Quran & Thajweeth", desc: "For Children" },
-  {
-    icon: Palette,
-    title: "Canva & Photoshop",
-    desc: "Creative design skill training",
-  },
-  {
-    icon: GraduationCap,
-    title: "Al Quran Training Program",
-    desc: "Structured Quranic education",
-  },
-  {
-    icon: ScrollText,
-    title: "Primary Sources of Islamic Sharia",
-    desc: "Foundations of Islamic law",
-  },
-  { icon: User, title: "Quran & Thajweeth", desc: "For Men" },
+  { image: SLIBE },
+  { image: EROC },
+  { image: IAF },
+  { image: ISO },
+  { image: MMGI },
+  { image: UBE },
 ];
 
 export default function SubhMain() {
@@ -50,47 +33,40 @@ export default function SubhMain() {
           Our Programs
         </motion.h2>
 
-        {/* Carousel Wrapper */}
-        <motion.div
-          className="cursor-grab overflow-hidden"
-          whileTap={{ cursor: "grabbing" }}
-        >
-          {/* Track */}
+        {/* Carousel */}
+        <motion.div className="cursor-grab overflow-hidden">
           <motion.div
             className="flex gap-8"
             drag="x"
-            dragConstraints={{ left: -1200, right: 0 }}
+            dragConstraints={{ left: -1400, right: 0 }}
             animate={{ x: ["0%", "-100%"] }}
             transition={{
               repeat: Infinity,
-              duration: 25,
+              duration: 20, // faster scroll
               ease: "linear",
             }}
           >
-            {[...programs, ...programs].map((item, index) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={index}
-                  className="min-w-[260px] md:min-w-[300px]
-                             bg-white/10 backdrop-blur-lg
-                             rounded-2xl p-6
-                             flex flex-col items-center text-center gap-4
-                             shadow-lg hover:scale-105
-                             transition-transform duration-300"
-                >
-                  <div className="w-20 h-20 flex items-center justify-center bg-white/20 rounded-full">
-                    <Icon size={38} className="text-white" />
-                  </div>
+            {[...programs, ...programs].map((item, index) => (
+              <div
+                key={index}
+                className="min-w-[300px] md:min-w-[350px]
+                           h-[220px] md:h-[250px]
+                           rounded-2xl overflow-hidden
+                           shadow-lg hover:shadow-emerald-500/50
+                           hover:scale-105 transition-transform duration-300
+                           relative group"
+              >
+                {/* Only Image */}
+                <img
+                  src={item.image}
+                  alt={`Program ${index + 1}`}
+                  className="w-full h-full object-cover rounded-2xl"
+                />
 
-                  <h3 className="text-white font-semibold text-lg">
-                    {item.title}
-                  </h3>
-
-                  <p className="text-white/80 text-sm">{item.desc}</p>
-                </div>
-              );
-            })}
+                {/* Glow overlay on hover */}
+                <div className="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-50 transition-opacity duration-300 rounded-2xl"></div>
+              </div>
+            ))}
           </motion.div>
         </motion.div>
       </div>
