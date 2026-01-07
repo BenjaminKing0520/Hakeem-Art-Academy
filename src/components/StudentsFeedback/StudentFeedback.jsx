@@ -31,7 +31,7 @@ export default function StudentFeedback() {
   }, []);
 
   return (
-    <section className="relative py-24 px-4 bg-gradient-to-br from-[#062e08] via-[#0b4a11] to-[#021f05] overflow-hidden">
+    <section className="relative py-24 px-4 bg-gradient-to-br from-[#073C0A] via-[#073C0A] to-[#021f05] overflow-hidden">
       {/* Background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(74,222,128,0.25),transparent_60%)]" />
 
@@ -96,9 +96,7 @@ export default function StudentFeedback() {
                 key={i}
                 onClick={() => setIndex(i)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === i
-                    ? "bg-green-400 scale-125"
-                    : "bg-white/40 hover:bg-white/70"
+                  index === i ? "bg-#073C0A scale-125" : "bg-white"
                 }`}
               />
             ))}
