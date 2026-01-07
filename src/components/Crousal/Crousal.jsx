@@ -30,7 +30,7 @@ export default function SubhMain() {
           viewport={{ once: true }}
           className="text-4xl md:text-5xl font-bold text-white text-center mb-12"
         >
-          Our Body’s
+          Awarding Bodies
         </motion.h2>
 
         {/* Carousel */}
