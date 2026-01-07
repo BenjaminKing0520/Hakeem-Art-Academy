@@ -1,3 +1,4 @@
+// NavbarMain.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { HiMenu, HiX, HiSun, HiMoon } from "react-icons/hi";
 import { Link as RouterLink } from "react-router-dom";
@@ -19,6 +20,7 @@ const NavbarMain = () => {
   const [activeLink, setActiveLink] = useState("#home");
   const [showNav, setShowNav] = useState(true);
   const lastScrollY = useRef(0);
+  const [progress, setProgress] = useState(0);
 
   /* Scroll & navbar behavior */
   useEffect(() => {
@@ -34,6 +36,12 @@ const NavbarMain = () => {
       lastScrollY.current = currentScroll;
 
       setScrolled(currentScroll > 10);
+
+      // Scroll progress
+      const total =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      setProgress((currentScroll / total) * 100);
 
       // Section-based active link
       links.forEach((link) => {
@@ -55,6 +63,12 @@ const NavbarMain = () => {
 
   return (
     <>
+      {/* Scroll Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 h-[3px] z-[60] bg-white"
+        style={{ width: `${progress}%` }}
+      />
+
       <motion.header
         initial={{ y: -80 }}
         animate={{ y: showNav ? 0 : -100 }}
@@ -63,19 +77,23 @@ const NavbarMain = () => {
         className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl transition-all duration-500
         ${scrolled ? "py-1.5 shadow-2xl" : "py-3"}`}
       >
-        {/* Arabic Calligraphy SVG Watermark */}
-        <div
-          className="absolute inset-0 opacity-10 pointer-events-none"
+        {/* Arabic Calligraphy Watermark */}
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `url("data:image/svg+xml;utf8,
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
-              <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' 
-              font-size='50' fill='white' fill-opacity='0.05' font-family='Amiri, serif'>﷽</text>
-            </svg>")`,
-            backgroundRepeat: "no-repeat",
+              <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
+                <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
+                  font-size='30' fill='white' fill-opacity='0.03' font-family='Amiri, serif' transform='rotate(-15)'>
+                  &#xFDFB;
+                </text>
+              </svg>")`,
+            backgroundRepeat: "repeat",
             backgroundPosition: "center",
-            backgroundSize: "contain",
+            backgroundSize: "80px 80px",
           }}
+          animate={{ y: [0, 4, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
 
         <div className="relative max-w-7xl mx-auto flex items-center justify-between px-4">
@@ -126,6 +144,7 @@ const NavbarMain = () => {
 
           {/* Right Actions */}
           <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
             <button
               onClick={() => setDark(!dark)}
               className="text-white text-xl p-2 rounded-full hover:bg-white/10"
