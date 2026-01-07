@@ -31,7 +31,7 @@ export default function StudentFeedback() {
     <section className="py-20 px-4" style={{ backgroundColor: "#073C0A" }}>
       <div className="max-w-4xl mx-auto text-center text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 tracking-wide">
-          Students Feedback
+          Student Testimonials
         </h2>
 
         <div className="relative">
