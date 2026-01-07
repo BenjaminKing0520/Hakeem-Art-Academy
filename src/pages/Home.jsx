@@ -13,9 +13,9 @@ const Home = () => {
       <NavbarMain />
       <HeroMain />
       <CountSection />
-      <Crousal />
-      <StudentFeedback/>
       <PmMain />
+      <Crousal />
+      <StudentFeedback />
       <Footer />
     </main>
   );
