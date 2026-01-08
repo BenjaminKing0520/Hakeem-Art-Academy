@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import LogoImage from "../../assets/Images/Logo.jpg";
 
 const links = [
-  { name: "Home", path: "#home" },
+  { name: "Home", path: "/home" },
   { name: "About Us", path: "#about" },
   { name: "Courses", path: "#" },
-  { name: "Events", path: "#events" },
+  { name: "Events", path: "/events" },
   { name: "Contact", path: "#contact" },
 ];
 
