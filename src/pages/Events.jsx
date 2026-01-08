@@ -1,14 +1,14 @@
 import NavbarMain from "@/components/nevbarSection/NavbarMain";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Event1 from "../assets/Images/Event1.jpeg";
 import Event2 from "../assets/Images/Event2.jpeg";
 import Event3 from "../assets/Images/Event3.jpeg";
 import Event4 from "../assets/Images/Event4.jpeg";
-import  Award  from "../assets/Images/Award.jpeg";
-import  Award1  from "../assets/Images/Award1.jpeg";
-import  Award2  from "../assets/Images/Award2.jpeg";
-import  Award3  from "../assets/Images/Award3.jpeg";
+import Award from "../assets/Images/Award.jpeg";
+import Award1 from "../assets/Images/Award1.jpeg";
+import Award2 from "../assets/Images/Award2.jpeg";
+import Award3 from "../assets/Images/Award3.jpeg";
 import Footer from "@/components/footer/FooterMain";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 
@@ -22,16 +22,15 @@ const events = [
   },
   {
     title: "Honored with the International World Record of Asia",
-    date: "23 October 2025",
+    date: "2025-10-12",
     description:
-      "Honored and humbled to receive this Award the International World Record of Asia on the 12th of October at the prestigious Hilton Colombo! A milestone moment that reflects dedication, passion, and the power of perseverance.Thank you to everyone who supported this journey — this one's for all of us!",
+      "Honored and humbled to receive this Award, the International World Record of Asia, at the prestigious Hilton Colombo! A milestone moment that reflects dedication, passion, and the power of perseverance. Thank you to everyone who supported this journey — this one's for all of us!",
     images: [Award, Award1, Award2, Award3],
   },
   {
     title: "#",
     date: "#",
-    description:
-      "#",
+    description: "#",
     images: [],
   },
 ];
@@ -63,6 +62,19 @@ function Events() {
       activeIndex === activeEvent.images.length - 1 ? 0 : activeIndex + 1
     );
   };
+
+  // Auto-scroll effect for modal carousel
+  useEffect(() => {
+    if (!modalOpen || !activeEvent || activeEvent.images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((prev) =>
+        prev === activeEvent.images.length - 1 ? 0 : prev + 1
+      );
+    }, 3000); // 3 seconds
+
+    return () => clearInterval(interval);
+  }, [modalOpen, activeEvent]);
 
   return (
     <>
@@ -98,7 +110,8 @@ function Events() {
               <div className="p-6">
                 <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
                 <p className="text-gray-500 mb-2">
-                  {new Date(event.date).toLocaleDateString()}
+                  {event.date !== "#" &&
+                    new Date(event.date).toLocaleDateString()}
                 </p>
                 <p className="text-gray-700">{event.description}</p>
               </div>
@@ -146,7 +159,8 @@ function Events() {
             <div className="p-6 bg-gray-100">
               <h2 className="text-xl font-semibold">{activeEvent.title}</h2>
               <p className="text-gray-600 mb-2">
-                {new Date(activeEvent.date).toLocaleDateString()}
+                {activeEvent.date !== "#" &&
+                  new Date(activeEvent.date).toLocaleDateString()}
               </p>
               <p className="text-gray-700">{activeEvent.description}</p>
             </div>
