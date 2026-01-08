@@ -74,7 +74,7 @@ const TrueFocus = ({
 
       {/* Focus Glow Box */}
       <motion.div
-        className="absolute top-0 left-0 pointer-events-none rounded-lg border-2 border-green-500"
+        className="absolute top-0 left-0 pointer-events-none rounded-lg border-2 border-green-900"
         animate={{
           x: focusRect.x,
           y: focusRect.y,
