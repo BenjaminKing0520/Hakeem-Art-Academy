@@ -10,7 +10,7 @@ const links = [
   { name: "About Us", path: "#about" },
   { name: "Courses", path: "#" },
   { name: "Events", path: "#events" },
-  { name: "Contact", path: "contact" },
+  { name: "Contact", path: "#contact" },
 ];
 
 const NavbarMain = () => {
