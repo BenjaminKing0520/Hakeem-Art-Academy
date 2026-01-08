@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { FaBook } from "react-icons/fa"; // Suitable icon
+import { FaBook } from "react-icons/fa";
 
 const courses = [
   "Arabic Calligraphy (Children Male & Female, Adults)",
@@ -34,6 +34,12 @@ export default function CoursesCarousel() {
   return (
     <section className="py-16 bg-[#073C0A] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4">
+        {/* Heading */}
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-white mb-12">
+          Courses
+        </h1>
+
+        {/* Carousel */}
         <motion.div
           ref={carouselRef}
           className="overflow-hidden cursor-grab relative"
@@ -52,14 +58,14 @@ export default function CoursesCarousel() {
             {loopCourses.map((course, index) => (
               <div
                 key={index}
-                className="min-w-[250px] h-[150px] sm:h-[180px] md:h-[200px]
+                className="min-w-[220px] sm:min-w-[250px] md:min-w-[300px] h-[140px] sm:h-[160px] md:h-[200px]
                            rounded-2xl flex items-center justify-start gap-4
                            shadow-lg hover:shadow-emerald-500/50
                            hover:scale-105 transition-transform duration-300 flex-shrink-0
-                           bg-white px-6"
+                           bg-white px-4 sm:px-6"
               >
-                <FaBook className="text-[#073C0A] text-2xl" />
-                <p className="text-[#073C0A] text-left text-lg md:text-xl font-semibold">
+                <FaBook className="text-[#073C0A] text-2xl sm:text-3xl" />
+                <p className="text-[#073C0A] text-left text-sm sm:text-lg md:text-xl font-semibold">
                   {course}
                 </p>
               </div>
