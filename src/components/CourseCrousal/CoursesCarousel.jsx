@@ -1,5 +1,6 @@
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { FaBook } from "react-icons/fa"; // Suitable icon
 
 const courses = [
   "Arabic Calligraphy (Children Male & Female, Adults)",
@@ -28,7 +29,6 @@ export default function CoursesCarousel() {
     return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
-  // duplicate courses for infinite loop
   const loopCourses = [...courses, ...courses];
 
   return (
@@ -53,11 +53,13 @@ export default function CoursesCarousel() {
               <div
                 key={index}
                 className="min-w-[250px] h-[150px] sm:h-[180px] md:h-[200px]
-                           rounded-2xl flex items-center justify-center
+                           rounded-2xl flex items-center justify-start gap-4
                            shadow-lg hover:shadow-emerald-500/50
-                           hover:scale-105 transition-transform duration-300 flex-shrink-0"
+                           hover:scale-105 transition-transform duration-300 flex-shrink-0
+                           bg-white px-6"
               >
-                <p className="text-white text-center text-lg md:text-xl font-semibold px-4">
+                <FaBook className="text-[#073C0A] text-2xl" />
+                <p className="text-[#073C0A] text-left text-lg md:text-xl font-semibold">
                   {course}
                 </p>
               </div>
