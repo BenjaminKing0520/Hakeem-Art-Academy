@@ -8,7 +8,7 @@ import LogoImage from "../../assets/Images/Logo.jpg";
 const links = [
   { name: "Home", path: "#home" },
   { name: "About Us", path: "#about" },
-  { name: "Courses", path: "#courses" },
+  { name: "Courses", path: "#" },
   { name: "Events", path: "#events" },
   { name: "Contact", path: "#contact" },
 ];
