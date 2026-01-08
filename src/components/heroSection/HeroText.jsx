@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Dynamic subtexts (optional)
+// Dynamic subtexts
 const texts = [
   "Logo Designing",
   "Wall Art & Painting",
@@ -10,15 +10,14 @@ const texts = [
   "Arts & Calligraphy Classes",
 ];
 
-// TrueFocus component
+// TrueFocus component for part of heading
 const TrueFocus = ({
-  sentence = "Welcome to <br>Hakeem Art Academy",
-  separator = " ",
+  sentence = "Hakeem Art Academy",
   blurAmount = 6,
   animationDuration = 0.5,
   pauseBetweenAnimations = 1,
 }) => {
-  const words = sentence.split(separator);
+  const words = sentence.split(" ");
   const [currentIndex, setCurrentIndex] = useState(0);
   const containerRef = useRef(null);
   const wordRefs = useRef([]);
@@ -29,7 +28,6 @@ const TrueFocus = ({
     height: 0,
   });
 
-  // Auto animate words
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % words.length);
@@ -38,7 +36,6 @@ const TrueFocus = ({
     return () => clearInterval(interval);
   }, [words.length, animationDuration, pauseBetweenAnimations]);
 
-  // Calculate active word position
   useEffect(() => {
     if (!wordRefs.current[currentIndex] || !containerRef.current) return;
 
@@ -56,7 +53,7 @@ const TrueFocus = ({
   return (
     <div
       ref={containerRef}
-      className="relative flex flex-wrap gap-2 justify-center"
+      className="relative flex gap-2 flex-wrap justify-center"
     >
       {words.map((word, idx) => {
         const isActive = idx === currentIndex;
@@ -75,7 +72,7 @@ const TrueFocus = ({
         );
       })}
 
-      {/* Optional Focus Box/Glow */}
+      {/* Focus Glow Box */}
       <motion.div
         className="absolute top-0 left-0 pointer-events-none rounded-lg border-2 border-green-500"
         animate={{
@@ -104,17 +101,25 @@ const HeroText = () => {
   }, []);
 
   return (
-    <div className="text-white mb-6 text-center">
-      {/* Animated Heading */}
-      <TrueFocus
-        sentence="Welcome to Hakeem Art Academy"
-        blurAmount={6}
-        animationDuration={0.5}
-        pauseBetweenAnimations={0.5}
-      />
+    <div className="text-white mb-6">
+      {/* Heading */}
+      <div className="text-left max-w-3xl mx-auto">
+        {/* Static part */}
+        <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold">
+          Welcome to
+        </div>
 
-      {/* Morphing Subtext */}
-      <div className="h-12 sm:h-14 md:h-16 lg:h-20 overflow-hidden mt-4">
+        {/* Animated part */}
+        <TrueFocus
+          sentence="Hakeem Art Academy"
+          blurAmount={6}
+          animationDuration={0.5}
+          pauseBetweenAnimations={0.5}
+        />
+      </div>
+
+      {/* Morphing Subtext - Left aligned */}
+      <div className="h-12 sm:h-14 md:h-16 lg:h-20 overflow-hidden mt-4 text-left max-w-2xl mx-auto">
         <AnimatePresence mode="wait">
           <motion.p
             key={index}
