@@ -14,9 +14,10 @@ const Home = () => {
       <NavbarMain />
       <HeroMain />
       <CountSection />
+      <CoursesCarousel />
       <PmMain />
       <Crousal />
-      <CoursesCarousel/>
+
       <StudentFeedback />
       <Footer />
     </main>

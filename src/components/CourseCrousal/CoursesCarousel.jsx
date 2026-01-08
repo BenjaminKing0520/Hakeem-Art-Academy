@@ -1,7 +1,6 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 
-// ========== COURSES DATA ==========
 const courses = [
   "Arabic Calligraphy (Children Male & Female, Adults)",
   "Quran & Tajweeth for Adults & Women",
@@ -13,67 +12,59 @@ const courses = [
 ];
 
 export default function CoursesCarousel() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef(null);
+  const [carouselWidth, setCarouselWidth] = useState(0);
 
-  const prevSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? courses.length - 1 : currentIndex - 1);
-  };
+  useEffect(() => {
+    const updateWidth = () => {
+      if (carouselRef.current) {
+        const totalWidth = carouselRef.current.scrollWidth;
+        const visibleWidth = carouselRef.current.offsetWidth;
+        setCarouselWidth(totalWidth - visibleWidth);
+      }
+    };
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
 
-  const nextSlide = () => {
-    setCurrentIndex(currentIndex === courses.length - 1 ? 0 : currentIndex + 1);
-  };
+  // duplicate courses for infinite loop
+  const loopCourses = [...courses, ...courses];
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#010204] px-6 md:px-20 py-24">
-      <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-16 text-white">
-        Courses
-      </h1>
-
-      {/* Carousel Container */}
-      <div className="relative w-full max-w-xl flex items-center justify-center">
-        {/* Prev Button */}
-        <button
-          onClick={prevSlide}
-          className="absolute left-0 z-10 p-3 bg-black/50 rounded-full hover:bg-black/80 transition text-white text-2xl"
-        >
-          &#10094;
-        </button>
-
-        {/* Slide */}
+    <section className="py-16 bg-[#073C0A] overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4">
         <motion.div
-          key={currentIndex}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.5 }}
-          className="bg-[#073C0A] w-full p-8 rounded-2xl shadow-xl flex items-center justify-center"
+          ref={carouselRef}
+          className="overflow-hidden cursor-grab relative"
         >
-          <p className="text-white text-center text-xl md:text-2xl font-semibold">
-            {courses[currentIndex]}
-          </p>
+          <motion.div
+            className="flex gap-6 flex-nowrap"
+            drag="x"
+            dragConstraints={{ left: -carouselWidth, right: 0 }}
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
+            }}
+          >
+            {loopCourses.map((course, index) => (
+              <div
+                key={index}
+                className="min-w-[250px] h-[150px] sm:h-[180px] md:h-[200px]
+                           rounded-2xl flex items-center justify-center
+                           shadow-lg hover:shadow-emerald-500/50
+                           hover:scale-105 transition-transform duration-300 flex-shrink-0"
+              >
+                <p className="text-white text-center text-lg md:text-xl font-semibold px-4">
+                  {course}
+                </p>
+              </div>
+            ))}
+          </motion.div>
         </motion.div>
-
-        {/* Next Button */}
-        <button
-          onClick={nextSlide}
-          className="absolute right-0 z-10 p-3 bg-black/50 rounded-full hover:bg-black/80 transition text-white text-2xl"
-        >
-          &#10095;
-        </button>
       </div>
-
-      {/* Dots */}
-      <div className="flex justify-center mt-6 gap-3">
-        {courses.map((_, idx) => (
-          <span
-            key={idx}
-            onClick={() => setCurrentIndex(idx)}
-            className={`w-3 h-3 rounded-full cursor-pointer transition ${
-              idx === currentIndex ? "bg-green-400" : "bg-gray-500"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
+    </section>
   );
 }
