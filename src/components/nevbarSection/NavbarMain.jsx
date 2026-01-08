@@ -8,7 +8,7 @@ import LogoImage from "../../assets/Images/Logo.jpg";
 const links = [
   { name: "Home", path: "/home" },
   { name: "About Us", path: "#about" },
-  { name: "Courses", path: "#" },
+  { name: "Courses", path: "#courses" },
   { name: "Events", path: "/events" },
   { name: "Contact", path: "#contact" },
 ];
@@ -17,24 +17,25 @@ const NavbarMain = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dark, setDark] = useState(true);
   const [scrolled, setScrolled] = useState(false);
-  const [activeLink, setActiveLink] = useState("#home");
+  const [activeLink, setActiveLink] = useState("/home");
   const [showNav, setShowNav] = useState(true);
   const lastScrollY = useRef(0);
   const [progress, setProgress] = useState(0);
 
-  /* Scroll & navbar behavior */
+  const linkRefs = useRef([]);
+
+  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
 
       // Navbar hide/reveal
       if (currentScroll > lastScrollY.current && currentScroll > 100) {
-        setShowNav(false); // scroll down -> hide
+        setShowNav(false);
       } else {
-        setShowNav(true); // scroll up -> show
+        setShowNav(true);
       }
       lastScrollY.current = currentScroll;
-
       setScrolled(currentScroll > 10);
 
       // Scroll progress
@@ -45,11 +46,13 @@ const NavbarMain = () => {
 
       // Section-based active link
       links.forEach((link) => {
-        const section = document.querySelector(link.path);
-        if (section) {
-          const rect = section.getBoundingClientRect();
-          if (rect.top <= 80 && rect.bottom >= 80) {
-            setActiveLink(link.path);
+        if (link.path.startsWith("#")) {
+          const section = document.querySelector(link.path);
+          if (section) {
+            const rect = section.getBoundingClientRect();
+            if (rect.top <= 80 && rect.bottom >= 80) {
+              setActiveLink(link.path);
+            }
           }
         }
       });
@@ -69,25 +72,27 @@ const NavbarMain = () => {
         style={{ width: `${progress}%` }}
       />
 
+      {/* Navbar */}
       <motion.header
         initial={{ y: -80 }}
         animate={{ y: showNav ? 0 : -100 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
         style={{ backgroundColor: bgColor }}
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl transition-all duration-500
-        ${scrolled ? "py-1.5 shadow-2xl" : "py-3"}`}
+        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-xl transition-all duration-500 ${
+          scrolled ? "py-1.5 shadow-2xl" : "py-3"
+        }`}
       >
-        {/* Arabic Calligraphy Watermark */}
+        {/* Watermark */}
         <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `url("data:image/svg+xml;utf8,
-              <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
-                <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
-                  font-size='30' fill='white' fill-opacity='0.03' font-family='Amiri, serif' transform='rotate(-15)'>
-                  &#xFDFB;
-                </text>
-              </svg>")`,
+            <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>
+              <text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle'
+              font-size='30' fill='white' fill-opacity='0.03' font-family='Amiri, serif' transform='rotate(-15)'>
+              &#xFDFB;
+              </text>
+            </svg>")`,
             backgroundRepeat: "repeat",
             backgroundPosition: "center",
             backgroundSize: "80px 80px",
@@ -119,32 +124,43 @@ const NavbarMain = () => {
           </RouterLink>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex gap-9 items-center">
+          <div className="hidden md:flex gap-9 items-center relative">
             {links.map((link, i) => (
               <RouterLink
                 key={i}
+                ref={(el) => (linkRefs.current[i] = el)}
                 to={link.path}
-                className={`relative font-medium transition ${
-                  activeLink === link.path
-                    ? "text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.9)]"
-                    : "text-white/80 hover:text-white"
-                }`}
+                onClick={() => setActiveLink(link.path)}
+                className="relative font-medium text-white/80 hover:text-white transition-colors"
               >
                 {link.name}
-                <span
-                  className={`absolute left-0 -bottom-1 h-[2px] bg-white transition-all duration-300 ${
-                    activeLink === link.path
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
-                  }`}
-                />
               </RouterLink>
             ))}
+
+            {/* Active Underline */}
+            {linkRefs.current[
+              links.findIndex((l) => l.path === activeLink)
+            ] && (
+              <motion.div
+                layoutId="underline"
+                className="absolute bottom-0 h-[2px] bg-white rounded"
+                style={{
+                  width:
+                    linkRefs.current[
+                      links.findIndex((l) => l.path === activeLink)
+                    ].offsetWidth,
+                  left: linkRefs.current[
+                    links.findIndex((l) => l.path === activeLink)
+                  ].offsetLeft,
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            )}
           </div>
 
-          {/* Right Actions */}
+          {/* Right actions */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
+            {/* Theme toggle */}
             <button
               onClick={() => setDark(!dark)}
               className="text-white text-xl p-2 rounded-full hover:bg-white/10"
@@ -152,7 +168,7 @@ const NavbarMain = () => {
               {dark ? <HiSun /> : <HiMoon />}
             </button>
 
-            {/* Mobile Menu */}
+            {/* Mobile menu */}
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden text-white text-3xl p-2"
