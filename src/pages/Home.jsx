@@ -4,6 +4,7 @@ import HeroMain from "../components/heroSection/HeroMain";
 import CountSection from "@/components/CountSection/CountSection";
 import PmMain from "../components/presidentMess/PmMain";
 import Crousal from "../components/Crousal/Crousal";
+import CoursesCarousel from "@/components/CourseCrousal/CoursesCarousel";
 import StudentFeedback from "@/components/StudentsFeedback/StudentFeedback";
 import Footer from "../components/footer/FooterMain";
 
@@ -15,6 +16,7 @@ const Home = () => {
       <CountSection />
       <PmMain />
       <Crousal />
+      <CoursesCarousel/>
       <StudentFeedback />
       <Footer />
     </main>
