@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import heroImage1 from '../../assets/Images/Pic2.jpg';
-import heroImage2 from '../../assets/Pic.jpg';
+import heroImage1 from "../../assets/Images/Home.jpeg";
+import heroImage2 from "../../assets/Images/Home1.jpeg";
 
 const HeroBackground = () => {
   const images = [heroImage1, heroImage2];

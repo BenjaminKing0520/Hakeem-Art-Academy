@@ -17,7 +17,6 @@ const Home = () => {
       <CoursesCarousel />
       <PmMain />
       <Crousal />
-
       <StudentFeedback />
       <Footer />
     </main>
