@@ -16,30 +16,34 @@ const HeroText = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % texts.length);
-    }, 2500); // text change speed
+    }, 2500);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="text-white mb-6">
-      {/* Heading */}
-      <motion.h1
-        variants={fadeIn("down", 0.2)}
-        initial="hidden"
-        whileInView="show"
-        className="
-          text-4xl sm:text-5xl md:text-6xl lg:text-7xl
-          font-bold
-          mb-4
-          leading-snug lg:leading-[1.1]
-        "
-      >
-        Welcome to <br />
-        Hakeem Art Academy
-      </motion.h1>
+      {/* Heading with Blur Animation */}
+      <AnimatePresence mode="wait">
+        <motion.h1
+          key="hero-heading"
+          initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          exit={{ opacity: 0, y: -20, filter: "blur(8px)" }}
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="
+            text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+            font-bold
+            mb-4
+            leading-snug lg:leading-[1.1]
+          "
+        >
+          Welcome to <br />
+          Hakeem Art Academy
+        </motion.h1>
+      </AnimatePresence>
 
-      {/* Morphing Text */}
+      {/* Morphing Dynamic Text */}
       <div className="h-12 sm:h-14 md:h-16 lg:h-20 overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.p
