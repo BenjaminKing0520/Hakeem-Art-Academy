@@ -1,6 +1,10 @@
 import NavbarMain from "@/components/nevbarSection/NavbarMain";
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Footer from "@/components/footer/FooterMain";
+import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+
+// Images
 import Event1 from "../assets/Images/Event1.jpeg";
 import Event2 from "../assets/Images/Event2.jpeg";
 import Event3 from "../assets/Images/Event3.jpeg";
@@ -9,15 +13,13 @@ import Award from "../assets/Images/Award.jpeg";
 import Award1 from "../assets/Images/Award1.jpeg";
 import Award2 from "../assets/Images/Award2.jpeg";
 import Award3 from "../assets/Images/Award3.jpeg";
-import Footer from "@/components/footer/FooterMain";
-import MosqueVisit from "../assets/Images/MosqueVisit.jpeg"
-import MosqueVisit1 from "../assets/Images/MosqueVisit1.jpeg"
-import MosqueVisit2 from "../assets/Images/MosqueVisit2.jpeg"
-import MosqueVisit3 from "../assets/Images/MosqueVisit3.jpeg"
-import MosqueVisit4 from "../assets/Images/MosqueVisit4.jpeg"
-import MosqueVisit5 from "../assets/Images/MosqueVisit5.jpeg"
-import MosqueVisit6 from "../assets/Images/MosqueVisit6.jpeg"
-import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
+import MosqueVisit from "../assets/Images/MosqueVisit.jpeg";
+import MosqueVisit1 from "../assets/Images/MosqueVisit1.jpeg";
+import MosqueVisit2 from "../assets/Images/MosqueVisit2.jpeg";
+import MosqueVisit3 from "../assets/Images/MosqueVisit3.jpeg";
+import MosqueVisit4 from "../assets/Images/MosqueVisit4.jpeg";
+import MosqueVisit5 from "../assets/Images/MosqueVisit5.jpeg";
+import MosqueVisit6 from "../assets/Images/MosqueVisit6.jpeg";
 
 const events = [
   {
@@ -31,14 +33,14 @@ const events = [
     title: "Honored with the International World Record of Asia",
     date: "2025-10-12",
     description:
-      "Honored and humbled to receive this Award, the International World Record of Asia, at the prestigious Hilton Colombo! A milestone moment that reflects dedication, passion, and the power of perseverance. Thank you to everyone who supported this journey — this one's for all of us!",
+      "Honored and humbled to receive this Award, the International World Record of Asia, at the prestigious Hilton Colombo! A milestone moment that reflects dedication, passion, and the power of perseverance.",
     images: [Award, Award1, Award2, Award3],
   },
   {
     title: "Annual Mosque Visit",
     date: "30 July 2025",
     description:
-      "The Centre for Islamic Studies Harmony Centre, in association with the Muslim Majlis of Sri Lanka Law College and the Muslim Women’s Research and Action Forum, with the support of Diakonia, conducted a Special Mosque Tour for Sri Lanka Law College students. Around 120 law students and staff members from other faiths participated in this meaningful visit at the historic Kollupitiya Jumma Mosque. The program included a guided mosque tour, interactive Q&A sessions, poster walkthroughs, distribution of educational literature to clear misconceptions about Islam, free Arabic calligraphy, a henna corner, a try-on hijab experience, and traditional Muslim refreshments. The organizers extend sincere thanks to the Law College administration, mosque tour guide teams, calligraphists, supporting institutions, and the Trustees of Kollupitiya Jumma Mosque for their continued support and hospitality.",
+      "The Centre for Islamic Studies Harmony Centre, in association with the Muslim Majlis of Sri Lanka Law College and the Muslim Women’s Research and Action Forum, with the support of Diakonia, conducted a Special Mosque Tour for Sri Lanka Law College students. Around 120 law students and staff members from other faiths participated in this meaningful visit at the historic Kollupitiya Jumma Mosque. The program included a guided mosque tour, interactive Q&A sessions, poster walkthroughs, distribution of educational literature to clear misconceptions about Islam, free Arabic calligraphy, a henna corner, a try-on hijab experience, and traditional Muslim refreshments.",
     images: [
       MosqueVisit,
       MosqueVisit1,
@@ -68,68 +70,75 @@ function Events() {
   };
 
   const prevImage = () => {
-    setActiveIndex(
-      activeIndex === 0 ? activeEvent.images.length - 1 : activeIndex - 1
+    setActiveIndex((prev) =>
+      prev === 0 ? activeEvent.images.length - 1 : prev - 1
     );
   };
 
   const nextImage = () => {
-    setActiveIndex(
-      activeIndex === activeEvent.images.length - 1 ? 0 : activeIndex + 1
+    setActiveIndex((prev) =>
+      prev === activeEvent.images.length - 1 ? 0 : prev + 1
     );
   };
 
-  // Auto-scroll effect for modal carousel
   useEffect(() => {
-    if (!modalOpen || !activeEvent || activeEvent.images.length <= 1) return;
-
-    const interval = setInterval(() => {
-      setActiveIndex((prev) =>
-        prev === activeEvent.images.length - 1 ? 0 : prev + 1
-      );
-    }, 3000); // 3 seconds
-
+    if (!modalOpen || !activeEvent) return;
+    const interval = setInterval(nextImage, 3000);
     return () => clearInterval(interval);
   }, [modalOpen, activeEvent]);
 
   return (
     <>
-      <main className="w-full min-h-screen px-6 py-12 bg-gray-100 font-body relative">
+      <main className="w-full min-h-screen px-6 py-12 bg-gray-100">
         <NavbarMain />
 
-        {/* Page Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           className="text-4xl font-bold text-center text-green-900 mb-12"
         >
           Events
         </motion.h1>
 
-        {/* Events Grid */}
+        {/* EVENTS GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {events.map((event, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 cursor-pointer"
-              onClick={() => openModal(event)}
+              whileHover={{ y: -5 }}
+              className="bg-white rounded-xl shadow-lg overflow-hidden"
             >
-              <img
-                src={event.images[0]}
-                alt={event.title}
-                className="w-full h-56 sm:h-48 md:h-52 lg:h-56 object-cover"
-              />
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold mb-2">{event.title}</h2>
-                <p className="text-gray-500 mb-2">
-                  {event.date !== "#" &&
-                    new Date(event.date).toLocaleDateString()}
+              {/* IMAGE (CLICKABLE) */}
+              <div
+                className="w-full aspect-[4/3] overflow-hidden cursor-pointer"
+                onClick={() => openModal(event)}
+              >
+                <img
+                  src={event.images[0]}
+                  alt={event.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              {/* CONTENT */}
+              <div className="p-5">
+                <h2 className="text-xl font-semibold mb-1">{event.title}</h2>
+
+                <p className="text-sm text-gray-500 mb-2">
+                  {new Date(event.date).toLocaleDateString()}
                 </p>
-                <p className="text-gray-700">{event.description}</p>
+
+                <p className="text-gray-700 text-sm line-clamp-3">
+                  {event.description}
+                </p>
+
+                {/* READ MORE */}
+                <button
+                  onClick={() => openModal(event)}
+                  className="mt-3 text-green-700 font-semibold hover:underline"
+                >
+                  Read More →
+                </button>
               </div>
             </motion.div>
           ))}
@@ -138,45 +147,44 @@ function Events() {
 
       <Footer />
 
-      {/* Modal */}
+      {/* MODAL */}
       {modalOpen && activeEvent && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="relative max-w-3xl w-full bg-white rounded-xl overflow-hidden shadow-2xl">
-            {/* Close Button */}
+          <div className="relative max-w-3xl w-full bg-white rounded-xl overflow-hidden">
+            {/* CLOSE */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-gray-800 hover:text-red-500 text-2xl z-50"
+              className="absolute top-4 right-4 text-2xl text-gray-800 hover:text-red-500 z-50"
             >
               <FaTimes />
             </button>
 
-            {/* Carousel Image */}
+            {/* IMAGE */}
             <img
               src={activeEvent.images[activeIndex]}
               alt={activeEvent.title}
               className="w-full h-96 object-cover"
             />
 
-            {/* Left/Right Arrows */}
+            {/* ARROWS */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-black/40 p-3 rounded-full hover:bg-black/60 transition"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-black/40 p-3 rounded-full hover:bg-black/60 transition"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white"
             >
               <FaArrowRight />
             </button>
 
-            {/* Caption */}
+            {/* CONTENT */}
             <div className="p-6 bg-gray-100">
-              <h2 className="text-xl font-semibold">{activeEvent.title}</h2>
-              <p className="text-gray-600 mb-2">
-                {activeEvent.date !== "#" &&
-                  new Date(activeEvent.date).toLocaleDateString()}
+              <h2 className="text-xl font-bold">{activeEvent.title}</h2>
+              <p className="text-sm text-gray-500 mb-2">
+                {new Date(activeEvent.date).toLocaleDateString()}
               </p>
               <p className="text-gray-700">{activeEvent.description}</p>
             </div>
