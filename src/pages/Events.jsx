@@ -40,7 +40,7 @@ const events = [
     title: "Annual Mosque Visit",
     date: "30 July 2025",
     description:
-      "The Centre for Islamic Studies Harmony Centre, in association with the Muslim Majlis of Sri Lanka Law College and the Muslim Women’s Research and Action Forum, with the support of Diakonia, conducted a Special Mosque Tour for Sri Lanka Law College students. Around 120 law students and staff members from other faiths participated in this meaningful visit at the historic Kollupitiya Jumma Mosque. The program included a guided mosque tour, interactive Q&A sessions, poster walkthroughs, distribution of educational literature to clear misconceptions about Islam, free Arabic calligraphy, a henna corner, a try-on hijab experience, and traditional Muslim refreshments.",
+      "The Centre for Islamic Studies Harmony Centre, in association with the Muslim Majlis of Sri Lanka Law College and the Muslim Women’s Research and Action Forum, with the support of Diakonia, conducted a Special Mosque Tour for Sri Lanka Law College students.",
     images: [
       MosqueVisit,
       MosqueVisit1,
