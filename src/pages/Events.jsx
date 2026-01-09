@@ -1,6 +1,5 @@
 import NavbarMain from "@/components/nevbarSection/NavbarMain";
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import Footer from "@/components/footer/FooterMain";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 
@@ -20,14 +19,18 @@ import MosqueVisit3 from "../assets/Images/MosqueVisit3.jpeg";
 import MosqueVisit4 from "../assets/Images/MosqueVisit4.jpeg";
 import MosqueVisit5 from "../assets/Images/MosqueVisit5.jpeg";
 import MosqueVisit6 from "../assets/Images/MosqueVisit6.jpeg";
+import Diamon from "../assets/Images/Diamon.jpeg";
+import Diamon1 from "../assets/Images/Diamon1.jpeg";
+import Diamon2 from "../assets/Images/Diamon2.jpeg";
+import Diamon3 from "../assets/Images/Diamon3.jpeg";
 
-/* ================= EVENTS DATA ================= */
+// ================= EVENTS DATA =================
 const events = [
   {
     title: "First Steps Toward Becoming an Ulama",
     date: "2025-11-15",
     description:
-      "our first religious writing introductory class was held at our religious education center, East Ceylon Arabic College, where I studied religious education and made myself an ulama.",
+      "Our first religious writing introductory class was held at our religious education center, East Ceylon Arabic College, where I studied religious education and made myself an ulama.",
     images: [Event1, Event2, Event3, Event4],
   },
   {
@@ -39,7 +42,7 @@ const events = [
   },
   {
     title: "Annual Mosque Visit",
-    date: "30 July 2025",
+    date: "2025-07-30",
     description:
       "The Centre for Islamic Studies Harmony Centre in Association with the Muslim Majlis of Law College and the Muslim Women's Research and Action Forum supported by Diakonia conducted yet another Mosque Tour for the Students of the Sri Lanka Law College.",
     images: [
@@ -53,32 +56,17 @@ const events = [
     ],
   },
   {
-    title: "Community Awareness Program",
-    date: "2026-02-10",
+    title: "Diamond Excellence Awards 2025",
+    date: "2025-08-17",
     description:
-      "An awareness and outreach program conducted for the community.",
-    images: [Event1, Event2, Event3], // ✅ safe images
+      "The Diamond Excellence Awards 2025 is Sri Lanka’s premier platform honoring exceptional leaders, innovators, educators, entrepreneurs, and artists who have made a meaningful impact on society. Celebrating excellence, innovation, and cultural pride, the awards recognize inspiring individuals and organizations shaping the nation’s future.",
+    images: [Diamon1, Diamon, Diamon2, Diamon3],
   },
 ];
 
+// ================= EVENTS COMPONENT =================
 function Events() {
-  /* ================= EVENT CAROUSEL ================= */
-  const [eventIndex, setEventIndex] = useState(0);
-
-  const nextEvent = () => {
-    setEventIndex((prev) => (prev + 1) % events.length);
-  };
-
-  const prevEvent = () => {
-    setEventIndex((prev) => (prev === 0 ? events.length - 1 : prev - 1));
-  };
-
-  useEffect(() => {
-    const auto = setInterval(nextEvent, 4000);
-    return () => clearInterval(auto);
-  }, []);
-
-  /* ================= MODAL ================= */
+  // ================= MODAL =================
   const [modalOpen, setModalOpen] = useState(false);
   const [activeEvent, setActiveEvent] = useState(null);
   const [activeImage, setActiveImage] = useState(0);
@@ -121,61 +109,46 @@ function Events() {
           Events
         </h1>
 
-        {/* ================= EVENTS CAROUSEL ================= */}
-        <div className="relative max-w-4xl mx-auto overflow-hidden">
-          <motion.div
-            animate={{ x: `-${eventIndex * 100}%` }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="flex"
-          >
-            {events.map((event, index) => (
-              <div key={index} className="min-w-full px-4">
-                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                  <div
-                    className="h-64 bg-black flex items-center justify-center cursor-pointer"
-                    onClick={() => openModal(event)}
-                  >
-                    <img
-                      src={event.images[0]}
-                      alt=""
-                      className="max-w-full max-h-full object-contain"
-                    />
-                  </div>
-
-                  <div className="p-5">
-                    <h2 className="text-lg font-semibold">{event.title}</h2>
-                    <p className="text-xs text-gray-500 mb-2">
-                      {new Date(event.date).toLocaleDateString()}
-                    </p>
-                    <p className="text-sm text-gray-700 line-clamp-3">
-                      {event.description}
-                    </p>
-
-                    <button
-                      onClick={() => openModal(event)}
-                      className="mt-3 text-green-700 font-semibold hover:underline"
-                    >
-                      Read More →
-                    </button>
-                  </div>
-                </div>
+        {/* ================= EVENTS GRID ================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {events.map((event, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col h-full cursor-pointer group"
+              onClick={() => openModal(event)} // Card click opens modal
+            >
+              {/* Image */}
+              <div className="h-48 bg-black flex items-center justify-center overflow-hidden">
+                <img
+                  src={event.images[0]}
+                  alt={event.title}
+                  className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
-            ))}
-          </motion.div>
 
-          {/* ARROWS */}
-          <button
-            onClick={prevEvent}
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
-          >
-            <FaArrowLeft />
-          </button>
-          <button
-            onClick={nextEvent}
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
-          >
-            <FaArrowRight />
-          </button>
+              {/* Content */}
+              <div className="p-4 flex-1 flex flex-col">
+                <h2 className="text-md font-semibold mb-1 text-green-900">
+                  {event.title}
+                </h2>
+                <p className="text-xs text-gray-500 mb-2">
+                  {new Date(event.date).toLocaleDateString()}
+                </p>
+                <p className="text-sm text-gray-700 flex-1 line-clamp-3">
+                  {event.description}
+                </p>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // prevent double click
+                    openModal(event);
+                  }}
+                  className="mt-1 text-md text-green-900 hover:underline self-start"
+                >
+                  Read More
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </main>
 
@@ -185,6 +158,7 @@ function Events() {
       {modalOpen && activeEvent && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-3">
           <div className="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden">
+            {/* Header */}
             <div className="flex justify-between items-center px-4 py-3 text-white border-b border-white/20">
               <div>
                 <h2 className="font-semibold">{activeEvent.title}</h2>
@@ -197,27 +171,28 @@ function Events() {
               </button>
             </div>
 
-            <div className="h-[60vh] flex items-center justify-center bg-black">
+            {/* Image Slider */}
+            <div className="h-[60vh] flex items-center justify-center bg-black relative">
               <img
                 src={activeEvent.images[activeImage]}
-                alt=""
+                alt={activeEvent.title}
                 className="max-w-full max-h-full object-contain"
               />
+              <button
+                onClick={prevImage}
+                className="absolute left-3 top-1/2 bg-black/60 p-3 rounded-full text-white -translate-y-1/2"
+              >
+                <FaArrowLeft />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-3 top-1/2 bg-black/60 p-3 rounded-full text-white -translate-y-1/2"
+              >
+                <FaArrowRight />
+              </button>
             </div>
 
-            <button
-              onClick={prevImage}
-              className="absolute left-3 top-1/2 bg-black/60 p-3 rounded-full text-white"
-            >
-              <FaArrowLeft />
-            </button>
-            <button
-              onClick={nextImage}
-              className="absolute right-3 top-1/2 bg-black/60 p-3 rounded-full text-white"
-            >
-              <FaArrowRight />
-            </button>
-
+            {/* Full Description */}
             <div className="p-5 bg-gray-100">
               <p className="text-gray-700">{activeEvent.description}</p>
             </div>
