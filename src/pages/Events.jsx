@@ -10,6 +10,13 @@ import Award1 from "../assets/Images/Award1.jpeg";
 import Award2 from "../assets/Images/Award2.jpeg";
 import Award3 from "../assets/Images/Award3.jpeg";
 import Footer from "@/components/footer/FooterMain";
+import MosqueVisit from "../assets/Images/MosqueVisit.jpeg"
+import MosqueVisit1 from "../assets/Images/MosqueVisit1.jpeg"
+import MosqueVisit2 from "../assets/Images/MosqueVisit2.jpeg"
+import MosqueVisit3 from "../assets/Images/MosqueVisit3.jpeg"
+import MosqueVisit4 from "../assets/Images/MosqueVisit4.jpeg"
+import MosqueVisit5 from "../assets/Images/MosqueVisit5.jpeg"
+import MosqueVisit6 from "../assets/Images/MosqueVisit6.jpeg"
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
 
 const events = [
@@ -28,10 +35,19 @@ const events = [
     images: [Award, Award1, Award2, Award3],
   },
   {
-    title: "#",
-    date: "#",
-    description: "#",
-    images: [],
+    title: "Annual Mosque Visit",
+    date: "30 July 2025",
+    description:
+      "The Centre for Islamic Studies Harmony Centre, in association with the Muslim Majlis of Sri Lanka Law College and the Muslim Women’s Research and Action Forum, with the support of Diakonia, conducted a Special Mosque Tour for Sri Lanka Law College students. Around 120 law students and staff members from other faiths participated in this meaningful visit at the historic Kollupitiya Jumma Mosque. The program included a guided mosque tour, interactive Q&A sessions, poster walkthroughs, distribution of educational literature to clear misconceptions about Islam, free Arabic calligraphy, a henna corner, a try-on hijab experience, and traditional Muslim refreshments. The organizers extend sincere thanks to the Law College administration, mosque tour guide teams, calligraphists, supporting institutions, and the Trustees of Kollupitiya Jumma Mosque for their continued support and hospitality.",
+    images: [
+      MosqueVisit,
+      MosqueVisit1,
+      MosqueVisit2,
+      MosqueVisit3,
+      MosqueVisit4,
+      MosqueVisit5,
+      MosqueVisit6,
+    ],
   },
 ];
 
