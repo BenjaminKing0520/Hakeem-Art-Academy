@@ -33,7 +33,7 @@ const events = [
     title: "Honored with the International World Record of Asia",
     date: "2025-10-12",
     description:
-      "Honored and humbled to receive this Award, the International World Record of Asia, at the prestigious Hilton Colombo! A milestone moment that reflects dedication, passion, and the power of perseverance.",
+      "Honored and humbled to receive this Award, the International World Record of Asia, at the prestigious Hilton Colombo!",
     images: [Award, Award1, Award2, Award3],
   },
   {
@@ -83,15 +83,15 @@ function Events() {
 
   useEffect(() => {
     if (!modalOpen || !activeEvent) return;
-    const interval = setInterval(nextImage, 3000);
+    const interval = setInterval(nextImage, 3500);
     return () => clearInterval(interval);
   }, [modalOpen, activeEvent]);
 
   return (
     <>
-      <main className="w-full min-h-screen px-6 py-12 bg-gray-100">
-        <NavbarMain />
+      <NavbarMain />
 
+      <main className="w-full min-h-screen px-4 sm:px-8 py-12 bg-gray-100">
         <motion.h1
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -101,14 +101,13 @@ function Events() {
         </motion.h1>
 
         {/* EVENTS GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {events.map((event, index) => (
             <motion.div
               key={index}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -6 }}
               className="bg-white rounded-xl shadow-lg overflow-hidden"
             >
-              {/* IMAGE – NO CUT */}
               <div
                 className="w-full h-56 bg-black flex items-center justify-center cursor-pointer"
                 onClick={() => openModal(event)}
@@ -120,15 +119,13 @@ function Events() {
                 />
               </div>
 
-              {/* CONTENT */}
               <div className="p-5">
-                <h2 className="text-xl font-semibold mb-1">{event.title}</h2>
-
-                <p className="text-sm text-gray-500 mb-2">
+                <h2 className="text-lg font-semibold">{event.title}</h2>
+                <p className="text-xs text-gray-500 mb-2">
                   {new Date(event.date).toLocaleDateString()}
                 </p>
 
-                <p className="text-gray-700 text-sm line-clamp-3">
+                <p className="text-sm text-gray-700 line-clamp-3">
                   {event.description}
                 </p>
 
@@ -148,20 +145,32 @@ function Events() {
 
       {/* MODAL */}
       {modalOpen && activeEvent && (
-        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="relative max-w-4xl w-full bg-black rounded-xl overflow-hidden">
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-2xl text-white hover:text-red-500 z-50"
-            >
-              <FaTimes />
-            </button>
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-3">
+          <div className="relative w-full max-w-5xl bg-black rounded-xl overflow-hidden">
+            {/* HEADER BAR */}
+            <div className="flex items-center justify-between px-4 py-3 bg-black text-white border-b border-white/20">
+              <div>
+                <h2 className="text-sm sm:text-lg font-semibold">
+                  {activeEvent.title}
+                </h2>
+                <p className="text-xs text-gray-400">
+                  {new Date(activeEvent.date).toLocaleDateString()}
+                </p>
+              </div>
 
-            {/* MODAL IMAGE – FULL, NO CUT */}
-            <div className="w-full h-[70vh] flex items-center justify-center bg-black">
+              <button
+                onClick={closeModal}
+                className="text-xl hover:text-red-500"
+              >
+                <FaTimes />
+              </button>
+            </div>
+
+            {/* IMAGE */}
+            <div className="w-full h-[55vh] sm:h-[65vh] bg-black flex items-center justify-center">
               <img
                 src={activeEvent.images[activeIndex]}
-                alt={activeEvent.title}
+                alt=""
                 className="max-w-full max-h-full object-contain"
               />
             </div>
@@ -169,24 +178,22 @@ function Events() {
             {/* ARROWS */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
+              className="absolute left-3 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
+              className="absolute right-3 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
             >
               <FaArrowRight />
             </button>
 
-            {/* TEXT */}
-            <div className="p-6 bg-gray-100">
-              <h2 className="text-xl font-bold">{activeEvent.title}</h2>
-              <p className="text-sm text-gray-500 mb-2">
-                {new Date(activeEvent.date).toLocaleDateString()}
+            {/* DESCRIPTION */}
+            <div className="p-5 bg-gray-100">
+              <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                {activeEvent.description}
               </p>
-              <p className="text-gray-700">{activeEvent.description}</p>
             </div>
           </div>
         </div>
