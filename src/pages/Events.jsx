@@ -108,15 +108,15 @@ function Events() {
               whileHover={{ y: -5 }}
               className="bg-white rounded-xl shadow-lg overflow-hidden"
             >
-              {/* IMAGE (CLICKABLE) */}
+              {/* IMAGE – NO CUT */}
               <div
-                className="w-full aspect-[4/3] overflow-hidden cursor-pointer"
+                className="w-full h-56 bg-black flex items-center justify-center cursor-pointer"
                 onClick={() => openModal(event)}
               >
                 <img
                   src={event.images[0]}
                   alt={event.title}
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                  className="max-w-full max-h-full object-contain"
                 />
               </div>
 
@@ -132,7 +132,6 @@ function Events() {
                   {event.description}
                 </p>
 
-                {/* READ MORE */}
                 <button
                   onClick={() => openModal(event)}
                   className="mt-3 text-green-700 font-semibold hover:underline"
@@ -150,37 +149,38 @@ function Events() {
       {/* MODAL */}
       {modalOpen && activeEvent && (
         <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
-          <div className="relative max-w-3xl w-full bg-white rounded-xl overflow-hidden">
-            {/* CLOSE */}
+          <div className="relative max-w-4xl w-full bg-black rounded-xl overflow-hidden">
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-2xl text-gray-800 hover:text-red-500 z-50"
+              className="absolute top-4 right-4 text-2xl text-white hover:text-red-500 z-50"
             >
               <FaTimes />
             </button>
 
-            {/* IMAGE */}
-            <img
-              src={activeEvent.images[activeIndex]}
-              alt={activeEvent.title}
-              className="w-full h-96 object-cover"
-            />
+            {/* MODAL IMAGE – FULL, NO CUT */}
+            <div className="w-full h-[70vh] flex items-center justify-center bg-black">
+              <img
+                src={activeEvent.images[activeIndex]}
+                alt={activeEvent.title}
+                className="max-w-full max-h-full object-contain"
+              />
+            </div>
 
             {/* ARROWS */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 p-3 rounded-full text-white"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/60 p-3 rounded-full text-white"
             >
               <FaArrowRight />
             </button>
 
-            {/* CONTENT */}
+            {/* TEXT */}
             <div className="p-6 bg-gray-100">
               <h2 className="text-xl font-bold">{activeEvent.title}</h2>
               <p className="text-sm text-gray-500 mb-2">
