@@ -90,7 +90,7 @@ function Contact() {
             transition={{ duration: 0.6 }}
             className="bg-white p-8 rounded-xl shadow-lg"
           >
-            <h2 className="text-2xl font-semibold mb-4">Follow Us the rohan benjam dfvkmodfvkmo</h2>
+            <h2 className="text-2xl font-semibold mb-4">Follow Us </h2>
 
             <div className="flex gap-4 flex-wrap">
               {socialLinks.map((item, idx) => (
