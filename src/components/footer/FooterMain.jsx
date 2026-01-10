@@ -12,7 +12,7 @@ import devImg from "../../assets/Images/Logo.jpg";
 export default function FooterMain() {
   const [typed, setTyped] = useState("");
 
-  const text = `© ${new Date().getFullYear()} Hakeem Art Online. All Rights Reserved.`;
+  const text = `© ${new Date().getFullYear()} Hakeem Art Academy. All Rights Reserved.`;
 
   useEffect(() => {
     let i = 0;
