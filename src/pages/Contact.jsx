@@ -62,53 +62,81 @@ function Contact() {
           />
         </motion.div>
 
-        {/* CONTACT DETAILS */}
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white p-8 rounded-xl shadow-lg"
-          >
-            <h2 className="text-2xl font-semibold mb-4">Get in Touch</h2>
-            <p className="mb-2">
-              <strong>Phone:</strong>0752258847
-            </p>
-            <p className="mb-2">
-              <strong>Email:</strong> mailhakeemahmed94@gmail.com
-            </p>
-            <p>
-              <strong>Address:</strong> College of Melbourne, Attalachenai
-            </p>
-          </motion.div>
+      {/* CONTACT DETAILS */}
+<motion.div
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, amount: 0.2 }}
+  className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8"
+>
+  {/* Contact Info */}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+      },
+    }}
+    className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+  >
+    <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-800">
+      Get in Touch
+    </h2>
 
-          {/* Social Links */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            className="bg-white p-8 rounded-xl shadow-lg"
-          >
-            <h2 className="text-2xl font-semibold mb-4">Follow Us </h2>
+    <p className="mb-2 text-gray-700 break-words">
+      <strong>Phone:</strong> 0752258847
+    </p>
+    <p className="mb-2 text-gray-700 break-words">
+      <strong>Email:</strong> mailhakeemahmed94@gmail.com
+    </p>
+    <p className="text-gray-700">
+      <strong>Address:</strong> College of Melbourne, Attalachenai
+    </p>
+  </motion.div>
 
-            <div className="flex gap-4 flex-wrap">
-              {socialLinks.map((item, idx) => (
-                <motion.a
-                  key={idx}
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.2, rotate: [0, 5, -5, 0] }}
-                  whileTap={{ scale: 0.9 }}
-                  className="h-12 w-12 flex items-center justify-center border rounded-full text-2xl text-green-900 hover:text-emerald-700 transition-all"
-                >
-                  <item.icon />
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+  {/* Social Links */}
+  <motion.div
+    variants={{
+      hidden: { opacity: 0, y: 30 },
+      visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, delay: 0.1, ease: "easeOut" },
+      },
+    }}
+    className="bg-white p-6 sm:p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+  >
+    <h2 className="text-xl sm:text-2xl font-semibold mb-4 text-gray-800">
+      Follow Us
+    </h2>
+
+    <div className="flex gap-4 flex-wrap">
+      {socialLinks.map((item, idx) => (
+        <motion.a
+          key={idx}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: idx * 0.08 }}
+          whileHover={{ scale: 1.15 }}
+          whileTap={{ scale: 0.95 }}
+          className="h-11 w-11 sm:h-12 sm:w-12
+                     flex items-center justify-center
+                     border rounded-full text-xl sm:text-2xl
+                     text-green-900 hover:text-emerald-700
+                     transition-colors duration-300"
+        >
+          <item.icon />
+        </motion.a>
+      ))}
+    </div>
+  </motion.div>
+</motion.div>
+    
       </main>
 
       <Footer />
