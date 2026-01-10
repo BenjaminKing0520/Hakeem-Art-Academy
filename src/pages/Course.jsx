@@ -155,13 +155,6 @@ export default function Course() {
                     {course.title}
                   </h3>
                 </div>
-                <motion.button
-                  variants={buttonVariants}
-                  whileHover="hover"
-                  className="mt-auto bg-emerald-900 text-white py-2 rounded-xl font-medium"
-                >
-                  Enroll Now
-                </motion.button>
               </div>
             </motion.div>
           ))}
