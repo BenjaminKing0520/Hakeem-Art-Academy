@@ -4,14 +4,58 @@ import { motion } from "framer-motion";
 import Footer from "../components/footer/FooterMain";
 import NavbarMain from "@/components/nevbarSection/NavbarMain";
 
+// Course Images
+import ArabicImg from "../assets/Images/arabic-calligraphy.jpg";
+import QuranImg from "../assets/Images/quran.jpg";
+import DesignImg from "../assets/Images/design.jpg";
+import IslamicImg from "../assets/Images/islamic-study.jpg";
+
+// Courses Data
 const courses = [
-  { title: "Web Development", duration: "3 Months", students: 120, description: "Learn front-end and back-end development with modern tools." },
-  { title: "Graphic Design", duration: "2 Months", students: 85,  description: "Master design principles, Photoshop, Illustrator, and Figma." },
-  { title: "Digital Marketing", duration: "1.5 Months", students: 100,  description: "Learn SEO, social media marketing, and ad campaigns." },
-  { title: "Python Programming", duration: "3 Months", students: 150,  description: "Learn Python programming for web, data science, and automation." },
-  { title: "UI/UX Design", duration: "2 Months", students: 90,  description: "Design user-friendly interfaces and enhance user experience." },
+  {
+    title: "Arabic Calligraphy",
+    img: ArabicImg,
+    description:
+      "Arabic Calligraphy for Children (Male & Female) and Adults with classical styles.",
+  },
+  {
+    title: "Quran & Tajweeth (Adults & Women)",
+    img: QuranImg,
+    description:
+      "Learn Quran recitation with correct Tajweeth rules for adults and women.",
+  },
+  {
+    title: "Quran & Tajweeth (Children)",
+    img: QuranImg,
+    description:
+      "Special Quran and Tajweeth classes designed exclusively for children.",
+  },
+  {
+    title: "Canva & Photoshop",
+    img: DesignImg,
+    description: "Learn graphic design using Canva and Adobe Photoshop tools.",
+  },
+  {
+    title: "Al Quran Training Program",
+    img: QuranImg,
+    description:
+      "Comprehensive Quran training program with memorization and understanding.",
+  },
+  {
+    title: "Primary Sources of Islamic Sharia",
+    img: IslamicImg,
+    description:
+      "Study Quran, Sunnah, Ijma, and Qiyas as primary sources of Islamic Sharia.",
+  },
+  {
+    title: "Quran & Tajweeth (Men)",
+    img: QuranImg,
+    description:
+      "Dedicated Quran and Tajweeth classes specially designed for men.",
+  },
 ];
 
+// Animation Variants
 const containerVariants = {
   hidden: {},
   visible: {
@@ -23,18 +67,26 @@ const containerVariants = {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  hover: { scale: 1.03, transition: { duration: 0.3 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+  hover: { scale: 1.03 },
 };
 
 const buttonVariants = {
-  hover: { scale: 1.05, backgroundColor: "#16a34a", transition: { duration: 0.3 } },
+  hover: {
+    scale: 1.05,
+    backgroundColor: "#16a34a",
+    transition: { duration: 0.3 },
+  },
 };
 
 export default function Course() {
   return (
     <div className="bg-gray-50 min-h-screen">
-      <NavbarMain/>
+      <NavbarMain />
 
       {/* Page Header */}
       <div className="max-w-7xl mx-auto px-4 py-12 text-center">
@@ -42,17 +94,17 @@ export default function Course() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-gray-900 mb-4"
+          className="text-4xl md:text-5xl font-bold text-green-900 mb-4"
         >
-          All Courses
+          Our Courses
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-gray-600 text-lg md:text-xl"
+          className="text-green-900 text-lg md:text-xl"
         >
-          Explore our popular courses and boost your skills today!
+          Learn, grow, and master skills that shape your future
         </motion.p>
       </div>
 
@@ -71,7 +123,7 @@ export default function Course() {
               whileHover="hover"
               className="relative bg-white rounded-2xl shadow-lg overflow-hidden flex flex-col"
             >
-              {/* Course Image */}
+              {/* Image */}
               <div className="h-48 w-full overflow-hidden rounded-t-2xl">
                 <motion.img
                   src={course.img}
@@ -84,33 +136,29 @@ export default function Course() {
 
               {/* Overlay */}
               <motion.div
-                className="absolute inset-0 bg-black/60 opacity-0 rounded-2xl flex flex-col justify-center items-center text-center px-4"
+                className="absolute inset-0 bg-black/60 opacity-0 flex items-center justify-center text-center px-4"
                 whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-white text-sm md:text-base">{course.description}</p>
+                <p className="text-white text-sm md:text-base">
+                  {course.description}
+                </p>
               </motion.div>
 
               {/* Content */}
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-emerald-500 text-white p-2 rounded-full">
+                  <div className="bg-emerald-900 text-white p-2 rounded-full">
                     <BookOpen size={20} />
                   </div>
-                  <h3 className="text-xl md:text-2xl font-semibold">{course.title}</h3>
+                  <h3 className="text-xl md:text-2xl font-semibold text-gray-900">
+                    {course.title}
+                  </h3>
                 </div>
-
-                <div className="flex items-center gap-4 text-gray-600 mb-4">
-                  <span>Duration: {course.duration}</span>
-                  <span className="flex items-center gap-1">
-                    <Users size={16} /> {course.students}
-                  </span>
-                </div>
-
                 <motion.button
                   variants={buttonVariants}
                   whileHover="hover"
-                  className="mt-auto bg-emerald-500 text-white py-2 rounded-xl transition"
+                  className="mt-auto bg-emerald-900 text-white py-2 rounded-xl font-medium"
                 >
                   Enroll Now
                 </motion.button>
@@ -120,7 +168,6 @@ export default function Course() {
         </div>
       </motion.div>
 
-      {/* Footer */}
       <Footer />
     </div>
   );
