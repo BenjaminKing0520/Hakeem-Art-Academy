@@ -83,9 +83,6 @@ function AboutUs() {
           </motion.div>
         </motion.section>
 
-        {/* Carousel */}
-        <Crousal />
-
         {/* Mission & Vision */}
         <motion.section
           initial="hidden"
@@ -136,7 +133,8 @@ function AboutUs() {
             </p>
           </motion.div>
         </motion.section>
-
+        {/* Carousel */}
+          <Crousal />
         {/* Quote */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
