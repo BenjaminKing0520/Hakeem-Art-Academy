@@ -1,25 +1,31 @@
-import NavbarMain from '@/components/nevbarSection/NavbarMain';
-import React from 'react';
+import NavbarMain from "@/components/nevbarSection/NavbarMain";
+import React from "react";
 import { motion } from "framer-motion";
 import aboutImage from "../assets/Images/About.jpg";
-import Footer from '@/components/footer/FooterMain';
+import Footer from "@/components/footer/FooterMain";
+
+// ✅ ADD THESE IMPORTS
+import CountSection from "@/components/countSection/CountSection";
+import Crousal from "@/components/crousal/Crousal";
 
 function AboutUs() {
   return (
     <>
-      <main className="w-full min-h-screen px-6 py-12 bg-gray-100 font-body">
-        <NavbarMain />
+      {/* Navbar should be outside main */}
+      <NavbarMain />
 
+      <main className="w-full min-h-screen px-6 py-12  bg-[#073C0A] font-body">
         {/* Page Heading */}
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold text-center text-green-900 mb-12"
+          className="text-4xl font-bold text-center text-white mb-12"
         >
           About Us
         </motion.h1>
-
+        {/* Stats */}
+        <CountSection />
         {/* Intro Section */}
         <motion.section
           initial="hidden"
@@ -34,7 +40,11 @@ function AboutUs() {
           <motion.div
             variants={{
               hidden: { opacity: 0, x: -50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.6 },
+              },
             }}
             className="w-full md:w-1/2"
           >
@@ -49,9 +59,13 @@ function AboutUs() {
           <motion.div
             variants={{
               hidden: { opacity: 0, x: 50 },
-              visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: { duration: 0.6 },
+              },
             }}
-            className="w-full md:w-1/2 text-green-900"
+            className="w-full md:w-1/2  text-white"
           >
             <h2 className="text-2xl font-semibold mb-4">Our Journey</h2>
             <p className="mb-4">
@@ -68,6 +82,9 @@ function AboutUs() {
           </motion.div>
         </motion.section>
 
+        {/* Carousel */}
+        <Crousal />
+
         {/* Mission & Vision */}
         <motion.section
           initial="hidden"
@@ -81,12 +98,16 @@ function AboutUs() {
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5 },
+              },
             }}
             whileHover={{ scale: 1.05 }}
             className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
           >
-            <h3 className="text-xl font-bold mb-2">Mission Statement Style</h3>
+            <h3 className="text-xl font-bold mb-2">Mission Statement</h3>
             <p>
               An educational institution dedicated to creating a better future
               for artists through learning and creativity.
@@ -96,7 +117,11 @@ function AboutUs() {
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+              visible: {
+                opacity: 1,
+                y: 0,
+                transition: { duration: 0.5 },
+              },
             }}
             whileHover={{ scale: 1.05 }}
             className="bg-white p-6 rounded-lg shadow hover:shadow-lg transition-shadow"
@@ -111,14 +136,15 @@ function AboutUs() {
           </motion.div>
         </motion.section>
 
-        {/* Optional Quote */}
+        {/* Quote */}
         <motion.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="mt-12 text-center text-gray-600 italic"
+          className="mt-12 text-center text-white italic"
         >
-          "العِلْمُ نُورٌ (Al-‘Ilmu Nūr)" “Knowledge is Light”
+          العِلْمُ نُورٌ —{" "}
+          <span className="not-italic">Knowledge is Light</span>
         </motion.section>
       </main>
 
