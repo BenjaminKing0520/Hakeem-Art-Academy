@@ -1,12 +1,13 @@
 import NavbarMain from "@/components/nevbarSection/NavbarMain";
+import CountSection from "@/components/CountSection/CountSection";
+import Crousal from "@/components/Crousal/Crousal";
 import React from "react";
 import { motion } from "framer-motion";
 import aboutImage from "../assets/Images/About.jpg";
 import Footer from "@/components/footer/FooterMain";
 
-// ✅ ADD THESE IMPORTS
-import CountSection from "@/components/countSection/CountSection";
-import Crousal from "@/components/crousal/Crousal";
+
+
 
 function AboutUs() {
   return (
