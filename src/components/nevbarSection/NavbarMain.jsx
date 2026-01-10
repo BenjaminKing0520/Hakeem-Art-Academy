@@ -68,15 +68,38 @@ const NavbarMain = () => {
       >
         <div className="relative max-w-7xl mx-auto flex items-center justify-between px-4">
           {/* Logo */}
-          <RouterLink to="/" className="flex items-center gap-3">
-            <motion.img
-              src={LogoImage}
-              alt="Logo"
-              className="w-11 h-11 rounded-full border-2 border-white"
+          <RouterLink to="/" className="flex items-center gap-3 group">
+            <motion.div
+              className="relative"
               animate={{ y: [0, -4, 0] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
-            <h1 className="text-white font-bold text-base sm:text-lg">
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              {/* Glow ring */}
+              <span
+                className="absolute inset-0 rounded-full blur-md opacity-70
+                 bg-gradient-to-r from-lime-300 via-green-400 to-emerald-300"
+              />
+
+              <motion.img
+                src={LogoImage}
+                alt="Logo"
+                className="relative w-11 h-11 rounded-full border-2 border-white
+                 shadow-[0_0_15px_rgba(144,238,144,0.9)]"
+                whileHover={{
+                  scale: 1.08,
+                  boxShadow: "0 0 28px rgba(144,238,144,1)",
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              />
+            </motion.div>
+
+            {/* Glowing Text */}
+            <h1
+              className="text-white font-bold text-base sm:text-lg
+               drop-shadow-[0_0_8px_rgba(144,238,144,0.9)]
+               group-hover:drop-shadow-[0_0_14px_rgba(144,238,144,1)]
+               transition-all duration-300"
+            >
               Hakeem Art Academy
             </h1>
           </RouterLink>
