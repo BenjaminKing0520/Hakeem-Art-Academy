@@ -51,7 +51,7 @@ function AboutUs() {
               hidden: { opacity: 0, x: 50 },
               visible: { opacity: 1, x: 0, transition: { duration: 0.6 } },
             }}
-            className="w-full md:w-1/2 text-gray-700"
+            className="w-full md:w-1/2 text-green-900"
           >
             <h2 className="text-2xl font-semibold mb-4">Our Journey</h2>
             <p className="mb-4">
@@ -76,7 +76,7 @@ function AboutUs() {
             hidden: {},
             visible: { transition: { staggerChildren: 0.15 } },
           }}
-          className="grid md:grid-cols-2 gap-8 text-gray-800"
+          className="grid md:grid-cols-2 gap-8 text-green-900"
         >
           <motion.div
             variants={{
