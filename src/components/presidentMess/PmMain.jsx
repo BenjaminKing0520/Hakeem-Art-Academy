@@ -74,7 +74,7 @@ const PmMain = () => {
               to="/about"
               className="inline-block bg-[#0B3B14] text-white px-6 py-3 rounded-full font-medium tracking-wide shadow-md hover:bg-[#0a3412] transition-all duration-300"
             >
-              Read More About Us →
+              Read More →
             </Link>
           </motion.div>
         </div>
