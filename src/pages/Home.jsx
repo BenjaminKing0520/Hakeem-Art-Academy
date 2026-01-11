@@ -3,7 +3,6 @@ import NavbarMain from "../components/nevbarSection/NavbarMain";
 import HeroMain from "../components/heroSection/HeroMain";
 import CountSection from "@/components/CountSection/CountSection";
 import PmMain from "../components/presidentMess/PmMain";
-import VideoSection from "@/components/VideoSection/VideoSection";
 import Crousal from "../components/Crousal/Crousal";
 import CoursesCarousel from "@/components/CourseCrousal/CoursesCarousel";
 import StudentFeedback from "@/components/StudentsFeedback/StudentFeedback";
@@ -18,7 +17,6 @@ const Home = () => {
       <CountSection />
       <CoursesCarousel />
       <PmMain />
-      <VideoSection/>
       <Crousal />
       <StudentFeedback />
       <Footer />
