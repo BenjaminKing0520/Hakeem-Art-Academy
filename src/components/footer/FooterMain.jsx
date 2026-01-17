@@ -93,7 +93,7 @@ export default function FooterMain() {
             <p
               className={`font-extrabold text-lg bg-clip-text text-transparent bg-gradient-to-r ${fbTheme.gradient}`}
             >
-              Melbourne Techy
+              Melbourne Techy good boyu to code  gjdjv
             </p>
           </div>
 
