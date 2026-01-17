@@ -4,10 +4,14 @@ import {
   FaEnvelope,
   FaPhoneAlt,
   FaArrowUp,
+  FaInstagram,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import devImg from "../../assets/Images/Logo.jpg";
+
+// X Icon
+const XIcon = ({ className }) => <span className={className}>X</span>;
 
 export default function FooterMain() {
   const [typed, setTyped] = useState("");
@@ -26,52 +30,58 @@ export default function FooterMain() {
 
   const fbTheme = {
     gradient: "from-white via-white/70 to-white",
-    border: "border-white/50",
     glow: "from-white/20 via-white/10 to-white/20",
     text: "text-white",
-    icon: "text-white hover:text-[#0C6610]",
+    icon: "text-white transition-all duration-300",
   };
 
-  // 🔗 Social media links (CHANGE YOUR LINKS HERE)
-const socialLinks = [
-  {
-    icon: FaFacebook,
-    link: "https://www.facebook.com/profile.php?id=61585860912759",
-  },
-  {
-    icon: FaWhatsapp,
-    link: "https://wa.me/94752258847",
-  },
-  {
-    icon: FaEnvelope,
-    link: "https://mail.google.com/mail/?view=cm&fs=1&to=mailhakeemahmed94@gmail.com",
-  },
-  {
-    icon: FaPhoneAlt,
-    link: "tel:+94752258847",
-  },
-];
+  const socialLinks = [
+    {
+      icon: FaFacebook,
+      link: "https://www.facebook.com/profile.php?id=61585860912759",
+    },
+    { icon: FaWhatsapp, link: "https://wa.me/94752258847" },
+    {
+      icon: FaInstagram,
+      link: "https://www.instagram.com/hakeem_art_academy_?igsh=bDQyajNmZHcya3hn&utm_source=qr",
+    },
+    { icon: XIcon, link: "https://x.com/artworkeshop?s=21" },
+    { icon: FaEnvelope, link: "mailto:mailhakeemahmed94@gmail.com" },
+    { icon: FaPhoneAlt, link: "tel:+94752258847" },
+  ];
 
   return (
-    <footer className="relative overflow-hidden bg-[#073C0A]">
+    <footer className="relative overflow-hidden bg-[#073C0A] py-10 border-t-4 border-green-600">
       {/* Glow Background */}
       <div
         className={`absolute inset-0 opacity-20 blur-3xl animate-gradient-x bg-gradient-to-r ${fbTheme.glow} -z-10`}
       />
 
-      <motion.div
-        className={`relative border rounded-3xl shadow-2xl p-6 md:p-10 border-opacity-50 ${fbTheme.border}`}
-      >
+      <motion.div className="relative p-6 md:p-10">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Social Icons */}
-          <div className="flex gap-5 md:w-1/3 justify-center md:justify-start">
-            {socialLinks.map(({ icon: Icon, link }, i) => (
-              <a key={i} href={link} target="_blank" rel="noopener noreferrer">
-                <Icon
-                  className={`text-2xl hover:scale-125 hover:-translate-y-1 transition-all duration-300 ${fbTheme.icon}`}
-                />
-              </a>
-            ))}
+          {/* Left Section: Social icons above address */}
+          <div className="flex flex-col md:w-1/3 items-center md:items-start gap-3">
+            {/* Social Icons with hover effect */}
+            <div className="flex gap-5 justify-center md:justify-start">
+              {socialLinks.map(({ icon: Icon, link }, i) => (
+                <motion.a
+                  key={i}
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white rounded-full p-3 bg-white/10 shadow-lg hover:bg-white/20 hover:shadow-xl transition-all duration-300"
+                  whileHover={{ scale: 1.25, rotate: 10 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <Icon className="text-2xl" />
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Address under social icons */}
+            <p className="text-white text-sm text-center md:text-left font-semibold mt-1">
+              118, Iqrah School Road, Addalaichenai -13
+            </p>
           </div>
 
           {/* Center Text */}
@@ -93,7 +103,7 @@ const socialLinks = [
               whileHover={{ scale: 1.15, rotate: 3 }}
               src={devImg}
               alt="Logo"
-              className={`w-24 h-24 md:w-32 md:h-32 rounded-full border-4 shadow-xl transition-shadow ${fbTheme.border}`}
+              className="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-xl transition-shadow"
             />
           </div>
         </div>
