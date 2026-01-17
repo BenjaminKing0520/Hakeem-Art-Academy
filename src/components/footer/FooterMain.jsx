@@ -47,7 +47,6 @@ export default function FooterMain() {
     },
     { icon: XIcon, link: "https://x.com/artworkeshop?s=21" },
     { icon: FaEnvelope, link: "mailto:mailhakeemahmed94@gmail.com" },
-    { icon: FaPhoneAlt, link: "tel:+94752258847" },
   ];
 
   return (
