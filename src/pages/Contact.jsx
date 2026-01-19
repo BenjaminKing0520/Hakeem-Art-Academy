@@ -27,7 +27,7 @@ function Contact() {
           className="w-full h-64 sm:h-80 md:h-[450px] rounded-xl overflow-hidden shadow-lg mb-12"
         >
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.9999999999995!2d81.839999!3d7.383333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae5000000000001%3A0x0000000000000000!2sAttalachenai%2C%20Sri%20Lanka!5e0!3m2!1sen!2slk!4v0000000000"
+            src="https://www.google.com/maps?q=118,Iqrah+School+Road,Addalaichenai+13,Sri+Lanka&output=embed"
             width="100%"
             height="100%"
             allowFullScreen
